@@ -1,0 +1,7 @@
+tracker_type: bytetrack  # tracker type, ['botsort', 'bytetrack']
+track_high_thresh: 0.3  # 降低首次匹配門檻
+track_low_thresh: 0.1  # 二次匹配門檻
+new_track_thresh: 0.4  # 初始化新軌跡的門檻
+track_buffer: 90  # 軌跡保留畫格數
+match_thresh: 0.8  # 匹配的 IoU 門檻
+fuse_score: True  # 融合偵測得分與追蹤得分

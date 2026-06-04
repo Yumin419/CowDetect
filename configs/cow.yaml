@@ -1,0 +1,7 @@
+path: datasets/cow  # 資料集根目錄路徑
+train: train/images    # 訓練影像 (相對於 path)
+val: val/images        # 驗證影像 (相對於 path)
+
+# 類別定義
+names:
+  0: Cow

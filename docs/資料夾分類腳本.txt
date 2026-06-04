@@ -1,0 +1,54 @@
+{
+  "project_name": "COW_Dataset_Auto_Classifier",
+  "version": "1.0.0",
+  "description": "基於影像飽和度特徵的自動化分類與命名腳本流程",
+  "configuration": {
+    "source_path": "./BC500-004",
+    "target_base": "./COW_dataset",
+    "analysis_parameters": {
+      "sampling_rate": "video_midpoint_frame",
+      "color_space": "HSV",
+      "decision_metric": "Mean_Saturation",
+      "ir_threshold": 5.0
+    }
+  },
+  "workflow_steps": [
+    {
+      "step": 1,
+      "action": "Directory_Scanning",
+      "logic": "遞迴掃描 SOURCE_DIR 下所有 .mp4 檔案，忽略非影片格式。"
+    },
+    {
+      "step": 2,
+      "action": "Metadata_Extraction",
+      "logic": "從檔名 BC500-004-YYYYMMDD-HHMMSS-... 提取日期、時間與 Seg 編號。",
+      "regex_pattern": "split by hyphen (-)"
+    },
+    {
+      "step": 3,
+      "action": "Feature_Sampling",
+      "logic": "使用 OpenCV 跳過影片開頭雜訊，抓取中間幀進行色彩分析。"
+    },
+    {
+      "step": 4,
+      "action": "Classification_Decision",
+      "logic": "計算平均飽和度 (S 通道)。",
+      "condition": {
+        "if_S_less_than_threshold": "Categorize as IR_MODE",
+        "else": "Categorize as COLOR_STABLE"
+      }
+    },
+    {
+      "step": 5,
+      "action": "File_Organization",
+      "logic": "建立目標資料夾結構並執行搬移。",
+      "naming_convention": "YYYYMMDD_HHMMSS_segN.mp4",
+      "target_structure": "Mode/Original_Folder_Name/New_Filename"
+    }
+  ],
+  "exception_handling": {
+    "corrupted_video": "Catch OpenCV read error and skip to next file",
+    "naming_mismatch": "Skip files not following the standard hyphenated format",
+    "path_collision": "Overwrite existing files in target or log error (Default: Move)"
+  }
+}

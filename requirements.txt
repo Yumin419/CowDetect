@@ -1,0 +1,9 @@
+ultralytics
+opencv-python
+argparse
+pathlib
+fastapi
+uvicorn
+pydantic
+jinja2
+requests

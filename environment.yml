@@ -1,0 +1,20 @@
+name: cow_env
+channels:
+  - pytorch
+  - nvidia
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.10
+  - pip
+  - pytorch
+  - torchvision
+  - torchaudio
+  - pytorch-cuda=11.8 # 預設支援 NVIDIA GPU，若無 GPU 可改為 cpuonly
+  - pip:
+      - ultralytics
+      - opencv-python
+      - matplotlib
+      - pandas
+      - pyyaml
+      - tqdm
