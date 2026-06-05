@@ -44,6 +44,11 @@ python main.py fence --input "your_video.mp4" --model "weights/best.pt" --class_
 python main.py fence --input "your_video_folder/" --model "weights/best.pt" --class_id 19
 ```
 
+**C. 擷取後自動分類**（New! 處理完畢後自動執行影像光照特徵分類）
+```bash
+python main.py fence --input "your_video.mp4" --model "weights/best.pt" --classify
+```
+
 ### 關鍵參數
 
 | 參數 | 說明 |
@@ -52,6 +57,7 @@ python main.py fence --input "your_video_folder/" --model "weights/best.pt" --cl
 | `--model` | YOLO 權重檔路徑（`weights/yolo11n.pt` 或微調後的 `.pt`） |
 | `--class_id` | **重要**。官方模型須加 `--class_id 19` (牛)；自訓練模型依其索引（通常為 0） |
 | `--ioa` | **New!** IoA 判定門檻（預設 0.5）。數值越高，牛隻進入區域的面積比例需越多才觸發 |
+| `--classify` | **New!** 擷取後自動執行影像自動分類歸檔 |
 
 ### 輸出位置
 
@@ -146,7 +152,7 @@ Test/
   ├── 20260420_010847_t1_v2.mp4   ← 個體 1，第 2 段（分割）
   └── 20260420_010847_t2_v1.mp4   ← 個體 2，第 1 段
         ↓
-python main.py data --classify
+python main.py data --classify (或在 fence 指令直接加上 --classify)
         ↓  [chroma_median + sat_p75 雙判據]
 COW_dataset/
   ├── IR_MODE/260420/*.mp4

@@ -28,6 +28,7 @@ def main():
     fence_parser.add_argument("--skip", type=int, default=1, help="跳格掃描率 (預設 1)")
     fence_parser.add_argument("--min_aspect", type=float, default=2.0, help="最小長寬比 (預設 2.0)")
     fence_parser.add_argument("--ioa", type=float, default=0.5, help="IoA 判定門檻 (預設 0.5)")
+    fence_parser.add_argument("--classify", action="store_true", help="擷取後自動執行影像分類")
 
     args = parser.parse_args()
 
@@ -158,6 +159,11 @@ def main():
                 frame_idx += 1
             cap.release()
         print("\n所有影片處理完成。")
+
+        if args.classify:
+            from core.classify import classify_videos
+            print(f"正在自動分類資料夾: {output_dir}")
+            classify_videos(output_dir, "COW_dataset")
 
 if __name__ == "__main__":
     main()
