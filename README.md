@@ -5,7 +5,7 @@
 ## ✨ 核心功能 (Features)
 
 1. **虛擬圍籬與自動擷取 (Virtual Fence)**
-   - 整合 YOLOv8 / YOLO11 與 ByteTrack 進行多目標追蹤。
+   - 整合  YOLO11 與 ByteTrack 進行多目標追蹤。
    - 使用 **IoA (Intersection over Area)** 比例判斷牛隻是否進入感應區，解決邊緣震盪問題。
    - 內建過濾機制：濾除長寬比異常、靜止不動或停留時間過短的無效片段。
    - 長時間停留自動分割（預設停留超過 20 秒自動切分新片段）。
