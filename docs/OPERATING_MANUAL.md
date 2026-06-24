@@ -46,7 +46,7 @@ python main.py fence --input "your_video_folder/" --model "weights/best.pt" --cl
 
 **C. 擷取後自動分類**（New! 處理完畢後自動執行影像光照特徵分類）
 ```bash
-python main.py fence --input "your_video.mp4" --model "weights/best.pt" --classify
+python main.py fence --input "your_video_folder/" --model "weights/best.pt" --classify --show
 ```
 
 ### 關鍵參數
